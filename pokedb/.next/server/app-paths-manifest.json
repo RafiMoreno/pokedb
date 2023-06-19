@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/my-pokemon/page": "app/my-pokemon/page.js",
+  "/list/page": "app/list/page.js",
+  "/pokemon/[id]/page": "app/pokemon/[id]/page.js"
+}
