@@ -1,5 +1,5 @@
-'use client'
-
+import Catch from "@/app/component/catch"
+import ReturnButton from "@/app/component/returnbutton"
 
 function imageIndex(number) {
   const url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + number.toString() + ".png"
@@ -16,24 +16,8 @@ function capitalFirstLetter(word) {
   return res
 }
 
-function handleCatchPokemon(id) {
-  alert('Clicked !')
-  // console.log("Clicked!");
-  // let val;
-  // val = localStorage.getItem("myPokemon");
-  // if(val == null){
-  //   localStorage.setItem("myPokemon", JSON.stringify(id))
-  // }
-  // else{
-  //   pokeArr = JSON.parse(val);
-  //   pokeArr.push(id);
-  //   localStorage.setItem("myPokemon", JSON.stringify(id))
-  // }
-  // console.log(localStorage.getItem("myPokemon"));
-}
-
-
 export default async function Pokemon({params}) {
+    console.log(params);
     const pokemonInfo = await getPokemon(params.id);
     let abilitiesList = []
     let movesList = []
@@ -49,8 +33,11 @@ export default async function Pokemon({params}) {
     let moves = movesList.toString();
 
     return( 
+    <div>
+    <ReturnButton></ReturnButton>
     <div class="relative flex flex-row ml-auto mr-auto mt-[10%] max-w-3xl 
     py-4 px-2 border-solid border-2 border-black rounded bg-gray-400 font-mono">
+      
       <img class="ml-4 mr-1 mt-0 h-[100%] w-[100%] bg-[#a8ccd7] border-solid border-2 border-black rounded " src={imageIndex(params.id)}></img> 
       <div class="flex flex-col w-full">
         <div class="font-bold text-xl px-1 py-1">
@@ -85,14 +72,10 @@ export default async function Pokemon({params}) {
             <p>Special Defense : {pokemonInfo.stats[4].base_stat}</p>
             <p>Speed : {pokemonInfo.stats[5].base_stat}</p>
           </div>
-        </div>
-        <div class="font-bold px-1 py-1 ">
-          <button onClick={ () => {handleCatchPokemon(pokemonInfo.name)} }
-          class="absolute right-0 bottom-0 rounded-full outline outline-2 outline-black bg-[#e4000f] mr-2 mb-2 py-1 px-2 text-white">
-          Catch !
-          </button>
+          <Catch data = {pokemonInfo.name}></Catch>
         </div>
       </div>
+    </div>
     </div>
     )
   }
