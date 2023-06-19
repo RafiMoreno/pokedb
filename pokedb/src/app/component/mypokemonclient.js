@@ -26,9 +26,11 @@ export default async function MyPokemonClient() {
     let pokeArr = []
     let val = localStorage.getItem("myPokemon")
     let myPokemon = JSON.parse(val)
-    for(let i =0; i < myPokemon.length; i++){
-      let poke = await getPokemon(myPokemon[i])
-      pokeArr.push(poke)
+    if(myPokemon !== null){
+      for(let i =0; i < myPokemon.length; i++){
+        let poke = await getPokemon(myPokemon[i])
+        pokeArr.push(poke)
+      }
     }
   return (
     <div>
